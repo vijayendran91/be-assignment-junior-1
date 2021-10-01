@@ -1,4 +1,7 @@
 class StaticController < ApplicationController
-  def home
+  def dashboard
+  end
+
+  def person
   end
 end
