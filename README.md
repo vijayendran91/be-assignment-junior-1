@@ -14,7 +14,7 @@
 
 
 ## Things available in the repo
-- Webpacker added and following packages are added and working.
+- Webpacker configured and following packages are added and working.
   - Jquery added.
   - Bootstrap added.
   - Jgrowl added
@@ -24,7 +24,7 @@
   - Friend page - `/persons/:id` layout added for this page. 
 ## Seed data
 
-Seed has been added for the `user` model. Through Fabrication and faker gem.
+Seed has been added for the `user` model. Through Fabrication and Faker gem.
 ```
 rake db:seed
 ```
@@ -35,4 +35,4 @@ Deploy this to heroku. Send us the repo and heroku link.
 
 ## Contact us
 If you need any help regarding this event:
-- Comment on 
+- Comment on work@commutatus.com
