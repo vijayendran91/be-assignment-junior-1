@@ -1,38 +1,36 @@
 # Rails Assignment - Splitwise
 
 ## Setup
-- Ensure that you’ve a github account.
-- Ensure that you’ve git set up locally on your Laptop/PC.
-- Go to be-assignment-junior-1 repository.
 - Fork the repository. 
 - Clone the repository in your local machine.
+- Run `rails db:setup`, this will also seed data in the `User` model
+- Run `rails s` to start the server and `rails c` for rails console
 
-## Version
+## Requirements
 
 - Ruby - 2.6.3
 - Rails - 6.1.4
+- Git (configured with your Github account)
+- Node - XXX (Anbu, can we specify a version?)
 
 
 ## Things available in the repo
 - Webpacker configured and following packages are added and working.
-  - Jquery added.
-  - Bootstrap added.
-  - Jgrowl added
+  - Jquery
+  - Bootstrap
+  - Jgrowl
 - Devise installed and `User` model is added. Sign in and Sign up pages have been setup.
-- Route for following page have been added.
-  - Dashboard - This will be the root page. Layout added for this page
-  - Friend page - `/persons/:id` layout added for this page. 
-## Seed data
+- Routes and layouts for following page have been added.
+  - Dashboard - This will be the root page.
+  - Friend page - `/people/:id`
 
-Seed has been added for the `user` model. Through Fabrication and Faker gem.
-```
-rake db:seed
-```
 
 ## Submission
-Deploy this to heroku. Send us the repo and heroku link.
+- Make the improvements as specified in your technical assignment task.
+- Commit all changes to the fork you created
+- Deploy your app to Heroku
+- Send us the link of the dpeloyed application and your fork.
 
 
 ## Contact us
-If you need any help regarding this event:
-- Comment on work@commutatus.com
+If you need any help regarding this assignment or want to join [Commutatus](https://www.commutatus.com/), drop us an email at work@commutatus.com 
