@@ -11,7 +11,7 @@
 - Ruby - 2.6.3
 - Rails - 6.1.4
 - Git (configured with your Github account)
-- Node - XXX (Anbu, can we specify a version?)
+- Node - 12.13.1
 
 
 ## Things available in the repo
