@@ -5,7 +5,6 @@ class UserController < ApplicationController
 
   def sign_in
     if request.post?
-        binding.pry
     elsif request.get?
 
     end
@@ -30,7 +29,7 @@ class UserController < ApplicationController
 
 private
   def get_user_params
-    return params.require(:user).permit!
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
 end
