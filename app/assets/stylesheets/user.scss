@@ -1,12 +1,20 @@
 .blue_btn{
   background-color: #0642BA;
   color: white;
+  width: 30%;
 }
 
 .text_box{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.sign_in{
+.sign_in_head, .sign_up_head{
+  padding-left: 15px;
+}
+.sign_in, .sign_up{
   margin-top: 10%;
+}
+
+.sign_up_link, .remember_me{
+  margin-left: 2%;
 }
