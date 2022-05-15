@@ -12,7 +12,6 @@ class UserController < ApplicationController
 
   def sign_up
     if request.post?
-      binding.pry
       @user = User.new(get_user_params)
       if @user.save
         redirect_to user_dashboard_path, notice: "Please check your email for confirmation instructions."

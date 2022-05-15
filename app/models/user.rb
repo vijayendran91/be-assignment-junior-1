@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  require "bcrypt"
+
   validates :password, :length => {:minimum => 8 }
   validates :email, :uniqueness => true
   def password
