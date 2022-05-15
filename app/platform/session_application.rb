@@ -1,6 +1,9 @@
 module SessionApplication
   require_relative '../services/user_service'
+  require_relative '../helpers/user_helper'
+
   include UserService
+  include UserHelper
 
   def user_sign_in(params)
     @user = get_user_by_email_service(params[:email])
@@ -14,6 +17,7 @@ module SessionApplication
 
   def create_new_user(params)
     #Evaluvate email and password
+    validate_email(params[:email])
     @user = create_new_user_service(params)
     unless @user.errors.empty?
       raise InvalidCredentialsError.new(@user.errors.full_messages.to_sentence)

@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   validates :password, :length => {:minimum => 8 }
   validates :email, :uniqueness => true
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  
   def password
     @password
   end
