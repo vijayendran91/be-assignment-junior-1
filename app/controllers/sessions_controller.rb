@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  require_relative "../platform/session_application"
+  include SessionApplication
 
   def new
     @user = User.new
@@ -6,12 +8,11 @@ class SessionsController < ApplicationController
 
   def create
     user_params = get_user_params(params)
-    @user = User.find_by(:email => user_params[:email])
-    if @user && @user.is_password?(user_params[:password])
-      session[:user_id] = @user[:id]
+    begin
+      user_sign_in(user_params)
       redirect_to user_dashboard_path
-    else
-      flash.now[:danger] = "Incorrect Credentials. Please try again."
+    rescue => error
+      flash.now[:danger] = error.message
       render user_sign_in_path
     end
   end

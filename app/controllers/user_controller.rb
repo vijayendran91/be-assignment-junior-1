@@ -1,9 +1,13 @@
 class UserController < ApplicationController
+  require_relative "../platform/session_application"
+  include SessionApplication
+
   def home
     @user = User.new
   end
 
   def sign_in
+    #TODO Remove request.post?
     if request.post?
     elsif request.get?
 
@@ -12,11 +16,11 @@ class UserController < ApplicationController
 
   def sign_up
     if request.post?
-      @user = User.new(get_user_params)
-      if @user.save
-        redirect_to user_dashboard_path, notice: "Please check your email for confirmation instructions."
-      else
-        flash.now[:notice] = @user.errors.full_messages.to_sentence
+      begin
+        create_new_user(get_user_params)
+        redirect_to user_dashboard_path
+      rescue InvalidCredentialsError => e
+        flash.now[:notice] = e.message
         render user_sign_up_path
       end
     elsif request.get?
