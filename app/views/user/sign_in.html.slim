@@ -1,4 +1,7 @@
 .sign_in
+  - flash.each do |type, message|
+    .alert.alert-danger *{:role => "alert"}
+      = message
   h1.sign_in_head
     = "Sign In"
   =form_for User.new, :url => user_sign_in_path, :method => 'post' do |f|

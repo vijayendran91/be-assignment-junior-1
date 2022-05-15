@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
 
   def create
     user_params = get_user_params(params)
-    user = User.find_by(:email => user_params[:email])
-    if user && user.password == user_params[:password]
-      session[:user_id] = user[:id]
+    @user = User.find_by(:email => user_params[:email])
+    if @user && @user.is_password?(user_params[:password])
+      session[:user_id] = @user[:id]
       redirect_to user_dashboard_path
     else
-      # flash.now[:danger] = "Incorrect Credentials. Please try again."
+      flash.now[:danger] = "Incorrect Credentials. Please try again."
       render user_sign_in_path
     end
   end

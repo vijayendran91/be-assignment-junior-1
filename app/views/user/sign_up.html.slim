@@ -1,9 +1,12 @@
 .sign_up
-  h1.sign_up_head
-    = "Sign Up"
-  =form_for User.new, :url => user_sign_up_path, :method => 'post' do |f|
-    .form-row.mt-4
-      .form-group.col-md-6
-        = f.email_field :email, :class=> "email", :class=>"form-control text_box", :placeholder=>"Email"
-        = f.password_field :password, :class=>"password" ,:class=>"form-control text_box", :placeholder=>"Password"
-        = f.submit "Sign Up",:class=>"btn mt-2 form-submit blue_btn"
+  - flash.each do |type, message|
+    .alert.alert-danger *{:role => "alert"}
+      = message
+h1.sign_up_head
+  = "Sign Up"
+=form_for User.new, :url => user_sign_up_path, :method => 'post' do |f|
+  .form-row.mt-4
+    .form-group.col-md-6
+      = f.email_field :email, :class=> "email", :class=>"form-control text_box", :placeholder=>"Email"
+      = f.password_field :password, :class=>"password" ,:class=>"form-control text_box", :placeholder=>"Password"
+      = f.submit "Sign Up",:class=>"btn mt-2 form-submit blue_btn"
