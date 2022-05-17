@@ -1,4 +1,4 @@
-module UserService
+module UserServices
   def get_user_by_email_service(email)
     User.find_by(:email => email)
   end

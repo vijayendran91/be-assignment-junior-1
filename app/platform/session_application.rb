@@ -1,8 +1,8 @@
 module SessionApplication
-  require_relative '../services/user_service'
+  require_relative '../services/user_services'
   require_relative '../helpers/user_helper'
 
-  include UserService
+  include UserServices
   include UserHelper
 
   def user_sign_in(params)
