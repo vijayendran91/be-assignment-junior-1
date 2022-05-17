@@ -8,19 +8,30 @@ module SessionApplication
   def user_sign_in(params)
     @user = get_user_by_email_service(params[:email])
     if @user && @user.is_password?(params[:password])
-      # add_user_session TODO
+      session[:user_id] = @user[:id]
     else
-      #TODO Exception Incorrect Credentials
       raise InvalidCredentialsError.new("Incorrect Credentials. Please try again.")
     end
+    @user
   end
 
   def create_new_user(params)
-    #Evaluvate email and password
     validate_email(params[:email])
     @user = create_new_user_service(params)
     unless @user.errors.empty?
       raise InvalidCredentialsError.new(@user.errors.full_messages.to_sentence)
     end
+    @user
+  end
+
+  def get_current_user_from_session
+    session[:user_id]
+  end
+
+  def get_user_by_email(email)
+    get_user_by_email_service(email)
+  end
+  def get_user_by_id(user_id)
+    get_user_by_id_service(user_id)
   end
 end

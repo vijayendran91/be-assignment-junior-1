@@ -1,0 +1,1 @@
+class BillStorageError < StandardError; end

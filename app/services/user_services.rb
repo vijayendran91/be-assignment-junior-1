@@ -8,4 +8,8 @@ module UserServices
     user.save
     user
   end
+
+  def get_user_by_id_service(user_id)
+    User.find_by(:id => user_id)
+  end
 end
