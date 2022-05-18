@@ -38,8 +38,22 @@ module ExpenseApplication
     get_all_expenses_as_borrower(user_id)
   end
 
+
   def get_all_expenses_from_user(user_id1, user_id2)
     get_all_expenses_from_user_service(user_id1, user_id2)
+  end
+
+  def get_total_expense_of_user_id(user_id)
+    expenses = get_all_expenses_of_user_service(user_id)
+    total_expense = 0.0
+    expenses.each do |expense|
+      if(expense.borrowed_from_id == user_id)
+        total_expense += expense.amount
+      elsif(expense.borrower_id == user_id)
+        total_expense -= expense.amount
+      end
+    end
+    total_expense
   end
 
 end
