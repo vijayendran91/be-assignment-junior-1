@@ -26,21 +26,8 @@ module ExpenseApplication
     expenses
   end
 
-  def get_all_expenses_of_user_id(user_id)
-    get_all_expenses_of_user_service(user_id)
-  end
+  def settle_an_expense()
 
-  def get_all_expenses_borrowed_from(user_id)
-    get_all_expenses_borrowed_from_service(user_id)
-  end
-
-  def get_all_expenses_as_borrower(user_id)
-    get_all_expenses_as_borrower(user_id)
-  end
-
-
-  def get_all_expenses_from_user(user_id1, user_id2)
-    get_all_expenses_from_user_service(user_id1, user_id2)
   end
 
   def get_total_expense_of_user_id(user_id)
@@ -54,6 +41,32 @@ module ExpenseApplication
       end
     end
     total_expense
+  end
+
+  def get_all_expenses_of_user_id(user_id)
+    get_all_expenses_of_user_service(user_id)
+  end
+
+  def get_all_expenses_borrowed_from(user_id)
+    get_all_expenses_borrowed_from_service(user_id)
+  end
+
+  def get_all_expenses_as_borrower(user_id)
+    get_all_expenses_as_borrower(user_id)
+  end
+
+  #gets expenses between two users
+  def get_all_expenses_bet_two_users(user_id1, user_id2)
+    get_all_expenses_bet_two_users_service(user_id1, user_id2)
+  end
+
+  #Gets Unsettled expenses between the two users
+  def get_expenses_between_two_users(borrowed_from_id, borrower_id)
+    get_expenses_between_two_users_service(borrowed_from_id, borrower_id)
+  end
+
+  def settle_an_expense_with_id(expense_id)
+    settle_an_expense_with_id_service(expense_id)
   end
 
 end

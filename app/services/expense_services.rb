@@ -31,7 +31,18 @@ module ExpenseServices
     Expense.where(:borrower => user_id)
   end
 
-  def get_all_expenses_from_user_service(user_id1, user_id2)
-    Expense.where(:borrowed_from => user_id1).(Expense.where(:borrower => user_id2))
+  def get_all_expenses_bet_two_users_service(user_id1, user_id2)
+    Expense.where(:borrowed_from => user_id1).and(Expense.where(:borrower => user_id2)).or(
+      Expense.where(:borrowed_from => user_id2).and(Expense.where(:borrower => user_id1)))
+  end
+
+  def get_expenses_between_two_users_service(borrowed_from_id, borrower_id)
+    Expense.where(:settled => false).and(Expense.where(:borrowed_from => borrowed_from_id).and(Expense.where(:borrower => borrower_id)))
+  end
+
+  def settle_an_expense_with_id_service(expense_id)
+    expense = Expense.find_by(:id => expense_id)
+    expense.update(:settled => true)
+    expense
   end
 end
