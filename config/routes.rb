@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "user/sign_up", :to => "user#sign_up"
   get "user/sign_up", :to => "user#sign_up"
   get "user/sign_in", :to => "user#sign_in"
+  get "user/sign_out", :to => "user#sign_out"
   get "user/dashboard", :to => "user#dashboard"
 
 end
