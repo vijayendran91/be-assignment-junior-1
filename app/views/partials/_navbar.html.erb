@@ -1,0 +1,10 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/"><%=image_tag("brand_logo.png",:class=>"logo")%></a>
+  <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
+    <ul class="navbar-nav mr-auto navbar-items">
+      <li class="nav-item active ml-2 navbar-item">
+       <%=button_to "Sign Out", user_sign_out_path,:method=> :delete, :class => ' btn nav-link sign_out'%>
+      </li>
+    </ul>
+  </div>
+</nav>

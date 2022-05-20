@@ -1,3 +1,6 @@
+$base-blue: #07b4f9;
+$button-color: white;
+
 .blue_btn{
   background-color: #0642BA;
   color: white;
@@ -17,4 +20,62 @@
 
 .sign_up_link, .remember_me{
   margin-left: 2%;
+}
+
+.logo{
+  width: 30%;
+}
+
+.navbar{
+  background-color: black !important;
+  color: white;
+  border-radius: 0px !important;
+}
+
+.navbar .navbar-brand{
+  width: 200px;
+  height: 70px;
+}
+.nav-item{
+    // margin-top: 30%;
+}
+
+.navbarComm{
+  display: inline-flex;
+}
+
+.signOut{
+  background-color: blue;
+  color: white;
+  float:right !important;
+}
+
+.navbar-items{
+  margin-top: 1% !important;
+  float: right !important;
+  list-style-type: none;
+  display: flex;
+}
+
+.sign_out{
+  float: right !important;
+}
+
+.btn{
+  background-color: $base-blue;
+  color: white;
+}
+
+.navbar-item{
+  margin-left:5%;
+}
+
+.dashboardContainer{
+  position: fixed;
+  top: 15%;
+  left: 5%;
+  width: 90%;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-position: 50% 0%;
 }
