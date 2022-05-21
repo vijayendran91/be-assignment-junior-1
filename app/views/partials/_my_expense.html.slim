@@ -1,0 +1,22 @@
+table.table
+  thead
+    tr
+      th[scope="col"]
+        | #
+      th[scope="col"]
+        | Borrowed From
+      th[scope="col"]
+        | Amount
+      th[scope="col"]
+        | Handle
+  tbody
+    -(0..@user_borrowed.length-1).each do |i|
+      tr
+        th[scope="row"]
+          = i+1
+        td
+          = @user_borrowed[i][:borrowed_from]
+        td
+          = @user_borrowed[i][:amount]
+        td
+          = @user_borrowed[i][:borrower]

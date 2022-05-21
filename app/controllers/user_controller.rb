@@ -1,5 +1,12 @@
 class UserController < ApplicationController
   require_relative "../platform/session_application"
+  require_relative "../platform/bill_application"
+  require_relative "../platform/expense_application"
+  require_relative "../platform/session_application"
+
+  include SessionApplication
+  include BillApplication
+  include ExpenseApplication
   include SessionApplication
 
   def home
@@ -29,7 +36,13 @@ class UserController < ApplicationController
   end
 
   def dashboard
-
+    @user = current_user
+    @user_expenses = get_all_expenses_of_user_id(@user[:id])
+    @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
+    @user_borrowed_from = []
+    (0..@user_borrowed.length-1).each do |i|
+      @user_borrowed_from[i] =  get_user_by_id(@user_borrowed[i][:borrowed_from_id])
+    end
   end
 
 private

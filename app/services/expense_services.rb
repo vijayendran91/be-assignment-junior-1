@@ -24,11 +24,11 @@ module ExpenseServices
   end
 
   def get_all_expenses_borrowed_from_service(user_id)
-    Expense.where(:borrowed_from => user_id)
+    Expense.where(:settled => false).and(Expense.where(:borrowed_from => user_id))
   end
 
   def get_all_expenses_as_borrower_service(user_id)
-    Expense.where(:borrower => user_id)
+    Expense.where(:settled => false).and(Expense.where(:borrower => user_id))
   end
 
   def get_all_expenses_bet_two_users_service(user_id1, user_id2)
