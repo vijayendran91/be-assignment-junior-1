@@ -15,19 +15,39 @@ module ExpenseApplication
       :bill => bill
     }
     expenses = []
+    update_user_total_owed(bill.paid_by, expense[:amount], no_of_parts)
     participants.each do |user_id|
-      expense[:borrower] = get_user_by_id_service(user_id)
+      borrower = get_user_by_id_service(user_id)
+      expense[:borrower] = borrower
+      update_user_total_owe(borrower, expense[:amount])
       @expense = add_expense_with_params_service(expense)
       unless @expense.errors.empty?
         raise ExpenseStorageError.new(@expense.errors.full_messages.to_sentence)
       end
       expenses.push(@expense)
     end
+    binding.pry
     expenses
   end
 
-  def settle_an_expense()
+  def update_user_total_owed(user, amount, no_of_parts)
+    total_owed = amount * (no_of_parts - 1)
+    addition = 0
+    unless(user.total_owed == nil)
+      addition = user.total_owed
+    end
+    total_owed += addition
+    update_user_total_owed_service(user, total_owed)
+  end
 
+  def update_user_total_owe(user, amount)
+    total_owe = amount
+    addition = 0
+    unless(user.total_owe == nil)
+      addition = user.total_owe
+    end
+    total_owe += addition
+    update_user_total_owe_service(user, total_owe)
   end
 
   def get_total_expense_of_user_id(user_id)

@@ -12,4 +12,14 @@ module UserServices
   def get_user_by_id_service(user_id)
     User.find_by(:id => user_id)
   end
+
+  def update_user_total_owe_service(user, amount)
+    user.update_attribute(:total_owe, amount)
+    user
+  end
+
+  def update_user_total_owed_service(user, amount)
+    user.update_attribute(:total_owed, amount)
+    user
+  end
 end
