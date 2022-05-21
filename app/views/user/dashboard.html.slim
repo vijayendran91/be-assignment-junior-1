@@ -1,17 +1,23 @@
-= render "/partials/navbar"
-
+= render "/partials/navbar/navbar"
+h1
+  = "Hi #{@user[:first_name]}"
 .dashboardContainer
   ul.nav.nav-tabs
-    li.nav-item
+    li.nav-item#allExpensesTab
       a#allExpenses.nav-link.active[aria-current="page" href="#"]
         | My Current Expenses
-    li.nav-item
+    li.nav-item#sharedExpensesTab
       a.nav-link[href="#"]
         | Shared Expenses
-    li.nav-item
+    li.nav-item#friendsExpensesTab
       a.nav-link.disabled[href="#" tabindex="-1" aria-disabled="true"]
         | Friends Expense
   div#dashboardWrapper
 
   div#myExpense
-    = render "/partials/my_expense"
+    = render "/partials/dashboard/my_expense"
+
+
+
+
+= javascript_pack_tag 'dashboard'
