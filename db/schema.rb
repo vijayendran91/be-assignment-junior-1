@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_044932) do
+ActiveRecord::Schema.define(version: 2022_05_21_125738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2022_05_18_044932) do
     t.bigint "borrowed_from_id", null: false
     t.bigint "borrower_id", null: false
     t.bigint "bill_id"
+    t.string "borrowed_from_name"
+    t.string "borrower_name"
     t.index ["bill_id"], name: "index_expenses_on_bill_id"
     t.index ["borrowed_from_id"], name: "index_expenses_on_borrowed_from_id"
     t.index ["borrower_id"], name: "index_expenses_on_borrower_id"
