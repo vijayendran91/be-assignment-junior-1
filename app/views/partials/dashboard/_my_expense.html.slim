@@ -9,10 +9,15 @@ table.table.my_expense
         | Total Owed to me
   tbody
     tr
-      td[scope="row"]
-        = "43$"
-      td[scope="row"]
-        = "93$"
+      td class=(@total_expense>=0.0 ? "green_row": "red_row")
+        -if @total_expense > 0.0
+            = "+ #{@total_expense}"
+        -elsif @total_expense <= 0.0
+            = @total_expense.to_f
+      td class=("red_row")
+        = @user[:total_owe].nil? ? 0.0 : @user[:total_owe]
+      td class=("green_row")
+        = @user[:total_owed].nil? ? 0.0: @user[:total_owed]
 
 table.table#allExpensesTable
   thead

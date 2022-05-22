@@ -37,6 +37,7 @@ class UserController < ApplicationController
 
   def dashboard
     @user = current_user
+    @total_expense = ((@user[:total_owed].nil? ? 0:@user[:total_owed]) - (@user[:total_owe].nil? ? 0:@user[:total_owe]))
     @user_expenses = get_all_expenses_of_user_id(@user[:id])
     @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
   end
