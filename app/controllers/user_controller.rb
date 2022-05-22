@@ -28,6 +28,13 @@ class UserController < ApplicationController
     render json: { expenses_table: render_to_string('partials/dashboard/_expenses_with_user_table', layout: false, locals: { all_expenses: @all_expenses, user: current_user}) }
   end
 
+  def friends_expenses
+    user = get_user_params
+    current_user = current_user()
+    @all_expenses = get_all_expenses_of_user_id(user)
+    render json: { expenses_table: render_to_string('partials/dashboard/_friends_expenses_table', layout: false, locals: { all_expenses: @all_expenses, user: user}) }
+  end
+
   def sign_up
     if request.post?
       begin

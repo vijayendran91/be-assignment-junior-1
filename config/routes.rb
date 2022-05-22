@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   delete "user/sign_out", :to => "sessions#destroy"
   get "user/dashboard", :to => "user#dashboard"
   get "user/expenses_with_user", :to => "user#expenses_with_user"
+  get "user/friends_expenses", :to => "user#friends_expenses"
 
 end

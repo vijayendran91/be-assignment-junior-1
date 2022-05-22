@@ -7,5 +7,7 @@ div#allUsers
     tbody
     -@all_users.each do |user|
       tr
-        td.clickableRow [data-user_id="#{user[:id]}"]
+        td.friendsClickableRow [data-user_id="#{user[:id]}"]
           = link_to user.first_name, "javascript:void(0)", :id=> "friendsUserLink"
+
+div#friendsExpensesContainer

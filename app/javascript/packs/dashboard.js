@@ -21,7 +21,7 @@ $(document).ready(function(){
     });
 
 
-    $('.clickableRow').on('click', function(){
+    $('.sharedClickableRow').on('click', function(){
       var user_id = $(this).data("user_id")
       $.ajax({
         type:"GET",
@@ -34,15 +34,28 @@ $(document).ready(function(){
           // createSharedExpensesTable(result);
         },
         error:function(result){
-          // debugger;
-          // createSharedExpensesTable(result);
+          //TODO Call Error Modal
         }
       });
     });
 
-    // $('.clickableRow').on('ajax:success', function(event, data){
-    //   debugger;
-    // });
+    $('.friendsClickableRow').on('click', function(){
+      var user_id = $(this).data("user_id")
+      $.ajax({
+        type:"GET",
+        url:"friends_expenses",
+        dataType:"json",
+        data: {user_id: user_id},
+        success:function(result){
+          $('#friendsExpensesContainer').empty();
+          $('#friendsExpensesContainer').append(result.expenses_table)
+          // createSharedExpensesTable(result);
+        },
+        error:function(result){
+          //TODO Call Error Modal
+        }
+      });
+    });
 });
 
 

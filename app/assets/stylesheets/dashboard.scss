@@ -12,11 +12,12 @@
   overflow: auto;
 }
 
-td.clickableRow
+td.sharedClickableRow
 {
   cursor: pointer;
 }
 
-#sharedExpensesTable{
-  width: 92.8%;
+#sharedExpensesTable, #friendsExpensesContainer{
+  max-width: 85%;
+  overflow: auto;
 }

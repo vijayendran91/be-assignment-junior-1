@@ -8,7 +8,7 @@ module UserHelper
   end
 
   def is_borrower?(expense, user_id)
-    if(expense[:borrower_id] == user_id)
+    if(expense[:borrower_id].to_s == user_id.to_s)
       return true
     end
   end
