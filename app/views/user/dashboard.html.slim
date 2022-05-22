@@ -4,20 +4,22 @@ h1
 .dashboardContainer
   ul.nav.nav-tabs
     li.nav-item#allExpensesTab
-      a#allExpenses.nav-link.active[aria-current="page" href="#"]
+      a#allExpenses.nav-link.active[aria-current="page" href="javascript:void(0)"]
         | My Current Expenses
     li.nav-item#sharedExpensesTab
-      a.nav-link[href="#"]
+      a.nav-link[href="javascript:void(0)"]
         | Shared Expenses
     li.nav-item#friendsExpensesTab
-      a.nav-link.disabled[href="#" tabindex="-1" aria-disabled="true"]
+      a.nav-link.disabled[href="javascript:void(0)" tabindex="-1" aria-disabled="true"]
         | Friends Expense
   div#dashboardWrapper
 
   div#myExpense
     = render "/partials/dashboard/my_expense"
-
-
+  div#sharedExpense
+    = render "/partials/dashboard/shared_expense"
+  div#friendsExpense
+    = render "/partials/dashboard/friends_expense"
 
 
 = javascript_pack_tag 'dashboard'

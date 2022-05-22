@@ -34,4 +34,8 @@ module SessionApplication
   def get_user_by_id(user_id)
     get_user_by_id_service(user_id)
   end
+
+  def get_all_users
+    get_all_users_service
+  end
 end

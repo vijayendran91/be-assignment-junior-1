@@ -8,7 +8,7 @@ class UserController < ApplicationController
   include BillApplication
   include ExpenseApplication
   include SessionApplication
-
+  respond_to :html, :js
   def home
     @user = User.new
   end
@@ -19,6 +19,13 @@ class UserController < ApplicationController
     elsif request.get?
 
     end
+  end
+
+  def expenses_with_user
+    user = get_user_params
+    current_user = current_user()
+    @all_expenses = get_all_expenses_bet_two_users(user, current_user[:id])
+    render json: { expenses_table: render_to_string('partials/dashboard/_expenses_with_user_table', layout: false, locals: { all_expenses: @all_expenses, user: current_user}) }
   end
 
   def sign_up
@@ -37,6 +44,7 @@ class UserController < ApplicationController
 
   def dashboard
     @user = current_user
+    @all_users = get_all_users
     @total_expense = ((@user[:total_owed].nil? ? 0:@user[:total_owed]) - (@user[:total_owe].nil? ? 0:@user[:total_owe]))
     @user_expenses = get_all_expenses_of_user_id(@user[:id])
     @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
@@ -45,6 +53,10 @@ class UserController < ApplicationController
 private
   def get_user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def get_user_params
+    params.require(:user_id)
   end
 
 end

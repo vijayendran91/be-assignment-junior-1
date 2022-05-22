@@ -5,3 +5,18 @@
 .green_row{
   background-color: #B9FFA5;
 }
+
+#allUsers{
+  border-right: 6px;
+  float: left;
+  overflow: auto;
+}
+
+td.clickableRow
+{
+  cursor: pointer;
+}
+
+#sharedExpensesTable{
+  width: 92.8%;
+}

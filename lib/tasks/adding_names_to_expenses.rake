@@ -5,7 +5,6 @@ namespace :adding_names_to_expense do
     Expense.all().each do |t|
       borrowed_from_name = t.borrowed_from[:first_name]
       borrower_name = t.borrower[:first_name]
-      binding.pry
       t.update_attribute :borrowed_from_name, borrowed_from_name
       t.update_attribute :borrower_name, borrower_name
     end

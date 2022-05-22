@@ -26,7 +26,6 @@ module ExpenseApplication
       end
       expenses.push(@expense)
     end
-    binding.pry
     expenses
   end
 

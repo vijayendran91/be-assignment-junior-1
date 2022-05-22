@@ -22,4 +22,8 @@ module UserServices
     user.update_attribute(:total_owed, amount)
     user
   end
+
+  def get_all_users_service
+    User.all
+  end
 end
