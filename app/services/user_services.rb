@@ -26,4 +26,8 @@ module UserServices
   def get_all_users_service
     User.all
   end
+
+  def get_all_users_except_service(user_id)
+    User.where.not(:id => user_id)
+  end
 end

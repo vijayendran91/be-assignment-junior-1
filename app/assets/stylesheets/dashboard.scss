@@ -1,3 +1,4 @@
+$base-blue: #07b4f9;
 .red_row{
   background-color: #FFA5A5;
 }
@@ -12,7 +13,7 @@
   overflow: auto;
 }
 
-td.sharedClickableRow
+td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable
 {
   cursor: pointer;
 }
@@ -20,4 +21,19 @@ td.sharedClickableRow
 #sharedExpensesTable, #friendsExpensesContainer{
   max-width: 85%;
   overflow: auto;
+}
+
+#addExpenseTrigger{
+  background-color: $base-blue;
+}
+
+#settleExpenseTrigger{
+  background-color: #C70039;
+}
+
+#addExpenseTrigger, #settleExpenseTrigger
+{
+  float: right;
+  margin-right: 1% !important;
+  margin-top: 1% !important;
 }

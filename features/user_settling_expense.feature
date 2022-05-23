@@ -52,3 +52,18 @@ Scenario: One of the expense gets settled
   Given Following "is" the expense between user "vijay" and "anantha"
     | borrowed_from     | borrower         | amount   |
     | anantha@gmail.com | vijay@gmail.com  | 100.0    |
+
+Scenario: User checks total balance after a settlement
+  Given Following "is" the expense between user "vijay" and "anantha"
+    | borrowed_from     | borrower         | amount   |
+    | vijay@gmail.com   | anantha@gmail.com| 200.0    |
+    | anantha@gmail.com | vijay@gmail.com  | 100.0    |
+  And User "anantha@gmail.com" settles the following expense
+    | borrowed_from   | amount |
+    | vijay@gmail.com | 200    |
+  And User "anantha@gmail.com" has the following in his dashboard
+    | total_owe |  total_owed  |
+    | 0.0       | 300.0        |
+  And User "vijay@gmail.com" has the following in his dashboard
+    | total_owe |  total_owed  |
+    | 100.0      | 600.0       |

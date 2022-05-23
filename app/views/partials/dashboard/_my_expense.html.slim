@@ -1,3 +1,7 @@
+div#addSettleExpenses
+  = link_to "Add Expense", "javascript:void(0)", :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
+  = link_to "Settle Expense", "javascript:void(0)", :class=> "btn settleExpenseModal" ,:id => "settleExpenseTrigger"
+
 table.table.my_expense
   thead
     tr
@@ -32,7 +36,7 @@ table.table#allExpensesTable
         | Amount
   tbody
     -(0..@user_expenses.length-1).each do |i|
-      tr class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row' : 'green_row')
+      tr data-expense = (@user_expenses[i][:id]) class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row expenseClickable data-expense=1' : 'green_row expenseClickable')
         th[scope="row"]
           = i+1
         td

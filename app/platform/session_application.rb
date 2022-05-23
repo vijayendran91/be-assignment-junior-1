@@ -38,4 +38,8 @@ module SessionApplication
   def get_all_users
     get_all_users_service
   end
+
+  def get_all_users_except(user_id)
+    get_all_users_except_service(user_id)
+  end
 end

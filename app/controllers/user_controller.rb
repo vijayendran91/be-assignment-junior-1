@@ -22,14 +22,14 @@ class UserController < ApplicationController
   end
 
   def expenses_with_user
-    user = get_user_params
+    user = get_user_params_expense
     current_user = current_user()
     @all_expenses = get_all_expenses_bet_two_users(user, current_user[:id])
     render json: { expenses_table: render_to_string('partials/dashboard/_expenses_with_user_table', layout: false, locals: { all_expenses: @all_expenses, user: current_user}) }
   end
 
   def friends_expenses
-    user = get_user_params
+    user = get_user_params_expense
     current_user = current_user()
     @all_expenses = get_all_expenses_of_user_id(user)
     render json: { expenses_table: render_to_string('partials/dashboard/_friends_expenses_table', layout: false, locals: { all_expenses: @all_expenses, user: user}) }
@@ -51,10 +51,15 @@ class UserController < ApplicationController
 
   def dashboard
     @user = current_user
-    @all_users = get_all_users
+    @new_expense = Expense.new
+    @all_users = get_all_users_except(@user[:id])
     @total_expense = ((@user[:total_owed].nil? ? 0:@user[:total_owed]) - (@user[:total_owe].nil? ? 0:@user[:total_owe]))
     @user_expenses = get_all_expenses_of_user_id(@user[:id])
     @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
+  end
+
+  def add_expense
+    @new_expense = Expense.new
   end
 
 private
@@ -62,7 +67,7 @@ private
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def get_user_params
+  def get_user_params_expense
     params.require(:user_id)
   end
 

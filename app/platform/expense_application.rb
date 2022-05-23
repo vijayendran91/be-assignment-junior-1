@@ -49,6 +49,14 @@ module ExpenseApplication
     update_user_total_owe_service(user, total_owe)
   end
 
+  def settle_user_total_owe(user,amount)
+    update_user_total_owe_service(user, amount)
+  end
+
+  def settle_user_total_owed(user,amount)
+    update_user_total_owed_service(user, amount)
+  end
+
   def get_total_expense_of_user_id(user_id)
     expenses = get_all_expenses_of_user_service(user_id)
     total_expense = 0.0
@@ -60,6 +68,9 @@ module ExpenseApplication
       end
     end
     total_expense
+  end
+  def get_expense_by_id(expense_id)
+    get_expense_with_id_service(expense_id)
   end
 
   def get_all_expenses_of_user_id(user_id)
@@ -85,6 +96,11 @@ module ExpenseApplication
   end
 
   def settle_an_expense_with_id(expense_id)
+    expense = get_expense_by_id(expense_id)
+    borrower = get_user_by_id(expense.borrower_id)
+    borrowed_from = get_user_by_id(expense.borrowed_from_id)
+    settle_user_total_owe(borrower, (borrower.total_owe - expense[:amount]))
+    settle_user_total_owed(borrowed_from, (borrowed_from.total_owed - expense[:amount]))
     settle_an_expense_with_id_service(expense_id)
   end
 

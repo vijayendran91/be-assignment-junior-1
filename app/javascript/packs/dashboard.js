@@ -4,22 +4,38 @@ $(document).ready(function(){
 
     $('#sharedExpensesTab').on('click', function(){
       $('#myExpense').hide();
+      $('#friendsExpensesContainer').empty();
       $('#sharedExpense').show();
       $('#friendsExpense').hide();
     });
 
     $('#allExpensesTab').on('click', function(){
       $('#myExpense').show();
+      $('#friendsExpensesContainer').empty();
+      $('#sharedExpenseContainer').empty();
       $('#sharedExpense').hide();
       $('#friendsExpense').hide();
     });
 
     $('#friendsExpensesTab').on('click', function(){
       $('#myExpense').hide();
+      $('#sharedExpenseContainer').empty();
       $('#sharedExpense').hide();
       $('#friendsExpense').show();
     });
 
+    $('#addExpenseTrigger').on('click', function(){
+      $('#addExpenseModal').show();
+    });
+
+    $('.modal-close').on('click', function(){
+      $('#addExpenseModal').hide();
+      $('#settleExpenseModal').hide();
+    });
+
+    $('.expenseClickable').on('click', function(){
+      $('#settleExpenseModal').show();
+    });
 
     $('.sharedClickableRow').on('click', function(){
       var user_id = $(this).data("user_id")

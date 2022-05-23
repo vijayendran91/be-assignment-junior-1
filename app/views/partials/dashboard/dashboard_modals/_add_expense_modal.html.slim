@@ -1,0 +1,27 @@
+
+#addExpenseModal.modal[tabindex="-1" role="dialog"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+        h5.modal-title
+          | Modal title
+        button.modal-close.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+      .modal-body
+          div#allUsers
+            table.table.all_users_table
+              thead
+                tr
+                  th[scope="row"]
+                    | Users
+              tbody
+              -@all_users.each do |user|
+                tr
+                  td.sharedClickableRow [data-user_id="#{user[:id]}"]
+                    = link_to user.first_name, "javascript:void(0)", :id=> "sharedUserLink"
+      .modal-footer
+          button.modal-close.btn.btn-secondary[type="button" data-dismiss="modal"]
+            | Close
+          button.btn.btn-primary[type="button"]
+            | Save changes
