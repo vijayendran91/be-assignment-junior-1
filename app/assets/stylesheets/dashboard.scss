@@ -23,7 +23,7 @@ td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable
   overflow: auto;
 }
 
-#addExpenseTrigger{
+#addExpenseTrigger, .addExpenseSubmit{
   background-color: $base-blue;
 }
 
@@ -36,4 +36,16 @@ td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable
   float: right;
   margin-right: 1% !important;
   margin-top: 1% !important;
+}
+
+#addExpenseInput{
+  margin-left: 20%
+}
+
+.add_expense_form_inputs{
+  // margin-left: 2%;
+  width: 20% !important;
+}
+.unequal_share_label{
+  margin-top: 2%;
 }

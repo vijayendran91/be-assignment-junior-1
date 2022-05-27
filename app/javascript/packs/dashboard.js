@@ -24,9 +24,9 @@ $(document).ready(function(){
       $('#friendsExpense').show();
     });
 
-    $('#addExpenseTrigger').on('click', function(){
-      $('#addExpenseModal').show();
-    });
+    // $('#addExpenseTrigger').on('click', function(){
+    //   $('#addExpenseModal').show();
+    // });
 
     $('.modal-close').on('click', function(){
       $('#addExpenseModal').hide();

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root to: "user#sign_in"
+  root to: "user#sign_in", :to => "user#sign_in"
   post "user/sign_in", :to => "sessions#create"
   post "user/sign_up", :to => "user#sign_up"
   get "user/sign_up", :to => "user#sign_up"
@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get "user/expenses_with_user", :to => "user#expenses_with_user"
   get "user/friends_expenses", :to => "user#friends_expenses"
 
+  get "user/add_expense", :to => "user#add_expense"
   post "user/add_expense", :to => "user#add_expense"
 end

@@ -1,0 +1,35 @@
+= render "/partials/navbar/navbar"
+h1
+  = "Hi #{@current_user[:first_name]}"
+
+.dashboardContainer
+  =form_tag user_add_expense_path, method: :post
+    div#allUsers.add_expense_users
+      table.table.all_users_table
+        thead
+          tr
+            th[scope="row"]
+              |Select Users
+        tbody
+        -@all_users.each do |user|
+          .form_group
+            tr
+              td [data-user_id="#{user[:id]}"]
+                = label_tag "add_user_to_expense_#{user[:id]}", "#{user.first_name}", :class => "participant_label"
+                = check_box_tag "participants[]", "#{user.id}",false, :multiple => true, :class => "participants_checkbox", :data => {:user_name => user.first_name, :user_id => user.id},:id=> "add_user_to_expense_#{user.id}", :style=> "float: right;"
+    div#addExpenseInput
+      h3
+        | Add an Expense
+      .form_group
+        = check_box_tag "unequal", "Unequal Split ?", true, :class => "unequal_checkbox", :id=>"unequal_split"
+        = label_tag "unequal", "Unequal Split ?", :class => "unequal_label"
+      .form_group
+        = label_tag "bill_amount", "Bill Amount"
+        = text_field_tag "bill_amount", " ",:class => "form-control add_expense_form_inputs"
+      #unequalSplit
+
+
+      .form_group
+        = submit_tag "Add Expense", data: { disable_with: "Adding Expense..." }, :class => "btn", :id => "add_expense_submit"
+
+= javascript_pack_tag 'add_expense'

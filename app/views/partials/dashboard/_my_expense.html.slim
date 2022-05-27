@@ -1,5 +1,5 @@
 div#addSettleExpenses
-  = link_to "Add Expense", "javascript:void(0)", :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
+  = link_to "Add Expense", user_add_expense_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
   = link_to "Settle Expense", "javascript:void(0)", :class=> "btn settleExpenseModal" ,:id => "settleExpenseTrigger"
 
 table.table.my_expense

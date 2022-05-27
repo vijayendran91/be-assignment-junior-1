@@ -17,7 +17,7 @@ class UserController < ApplicationController
     #TODO Remove request.post?
     if request.post?
     elsif request.get?
-
+      redirect_to user_dashboard_path if logged_in?
     end
   end
 
@@ -59,7 +59,13 @@ class UserController < ApplicationController
   end
 
   def add_expense
-    @new_expense = Expense.new
+    if request.post?
+      redirect_to user_dashboard_path
+    elsif request.get?
+      @current_user = current_user
+      @all_users = get_all_users_except(@current_user[:id])
+      @new_expense = Expense.new
+    end
   end
 
 private
