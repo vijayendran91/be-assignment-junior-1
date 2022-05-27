@@ -7,24 +7,35 @@ module ExpenseApplication
   include ExpenseHelper
   include ExpenseServices
 
-  def add_expenses(bill, participants)
+  def add_expenses(bill, participants, unequal, share_perc)
     no_of_parts = bill[:no_parts]
     expense = {
-      :amount => get_participant_amount(bill[:amount], no_of_parts),
       :borrowed_from => bill.paid_by,
       :bill => bill
     }
     expenses = []
-    update_user_total_owed(bill.paid_by, expense[:amount], no_of_parts)
-    participants.each do |user_id|
-      borrower = get_user_by_id_service(user_id)
-      expense[:borrower] = borrower
-      update_user_total_owe(borrower, expense[:amount])
-      @expense = add_expense_with_params_service(expense)
-      unless @expense.errors.empty?
-        raise ExpenseStorageError.new(@expense.errors.full_messages.to_sentence)
+    if(unequal == false)
+      expense[:amount] = get_participant_amount(bill[:amount], no_of_parts)
+      update_user_total_owed(bill.paid_by, expense[:amount], no_of_parts)
+      participants.each do |user_id|
+        borrower = get_user_by_id_service(user_id)
+        expense[:borrower] = borrower
+        update_user_total_owe(borrower, expense[:amount])
+        @expense = add_expense_with_params_service(expense)
       end
-      expenses.push(@expense)
+    elsif(unequal == true)
+      (0..participants.length-1).each do |i|
+        expense[:amount] = get_unequal_share_amount(bill[:amount], share_perc[i])
+        borrower = get_user_by_id_service(participants[i])
+        expense[:borrower] = borrower
+        update_user_total_owe(borrower, expense[:amount])
+        @expense = add_expense_with_params_service(expense)
+        expenses.push(@expense)
+      end
+      update_user_total_owed_unequal(expense[:borrowed_from], share_perc, bill[:amount])
+    end
+    unless @expense.errors.empty?
+      raise ExpenseStorageError.new(@expense.errors.full_messages.to_sentence)
     end
     expenses
   end
@@ -37,6 +48,19 @@ module ExpenseApplication
     end
     total_owed += addition
     update_user_total_owed_service(user, total_owed)
+  end
+
+  def update_user_total_owed_unequal(user,share_perc, bill_amount)
+    addition = 0
+    total_perc = 0
+    share_perc.each do |perc|
+      total_perc += perc
+    end
+    payer_perc = 100 - total_perc
+    amount = get_unequal_share_amount(bill_amount, payer_perc)
+    addition = user.total_owed unless(user.total_owed == nil)
+    addition+=amount
+    update_user_total_owed_service(user, amount)
   end
 
   def update_user_total_owe(user, amount)

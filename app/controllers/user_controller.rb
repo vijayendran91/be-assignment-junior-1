@@ -60,6 +60,18 @@ class UserController < ApplicationController
 
   def add_expense
     if request.post?
+      if(!params[:unequal].nil? && params[:unequal] == "true")
+        unequal = params[:unequal]
+        participants = params[:participants]
+        bill_amount = params[:bill_amount]
+        no_of_parts = participants.size
+        
+        binding.pry
+        # add_expenses(bill, participants, true)
+      else
+        binding.pry
+        # add_expenses(bill, participants, false)
+      end
       redirect_to user_dashboard_path
     elsif request.get?
       @current_user = current_user
@@ -77,4 +89,10 @@ private
     params.require(:user_id)
   end
 
+  def get_add_expense_params
+    params.permit(:unequal)
+    params.permit(:bill_amount)
+    params.permit(:shares)
+    params.permit(:participants)
+  end
 end

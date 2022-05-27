@@ -45,7 +45,7 @@ Given("Expenses are added for the following people") do |table|
   participants.each do |email|
     participants_id.push(get_user_by_email(email)[:id])
   end
-  @expenses = add_expenses(@bill, participants_id)
+  @expenses = add_expenses(@bill, participants_id, false, [])
 end
 
 Given("Following expenses are reflected to the users") do |table|

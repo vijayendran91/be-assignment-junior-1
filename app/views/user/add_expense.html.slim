@@ -21,7 +21,7 @@ h1
       h3
         | Add an Expense
       .form_group
-        = check_box_tag "unequal", "Unequal Split ?", true, :class => "unequal_checkbox", :id=>"unequal_split"
+        = check_box_tag "unequal", true, true, :class => "unequal_checkbox", :id=>"unequal_split"
         = label_tag "unequal", "Unequal Split ?", :class => "unequal_label"
       .form_group
         = label_tag "bill_amount", "Bill Amount"

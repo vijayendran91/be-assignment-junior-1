@@ -28,11 +28,10 @@ $('document').ready(function(){
 
     $('.unequal_checkbox').click(function() {
       if(!$("#unequal_split").is(':checked')){
-        $('.participants_checkbox').prop("checked", false);
         $('#unequalSplit').hide();
       }
       else if($("#unequal_split").is(':checked')){
-        $('#unequalSplit').empty();
+        // $('#unequalSplit').empty();
         $('#unequalSplit').show();
       }
     });
