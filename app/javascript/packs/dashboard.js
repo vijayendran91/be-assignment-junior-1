@@ -33,9 +33,7 @@ $(document).ready(function(){
       $('#settleExpenseModal').hide();
     });
 
-    $('.expenseClickable').on('click', function(){
-      $('#settleExpenseModal').show();
-    });
+    
 
     $('.sharedClickableRow').on('click', function(){
       var user_id = $(this).data("user_id")

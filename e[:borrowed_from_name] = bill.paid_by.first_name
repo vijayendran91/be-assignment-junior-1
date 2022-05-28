@@ -1,0 +1,34 @@
+=> {[33m:borrowed_from[0m=>
+  [32m#<User:0x00007f9a4c3d01b0[0m
+   id: [1;34m1[0m,
+   email: [31m[1;31m"[0m[31mvijay@gmail.com[1;31m"[0m[31m[0m,
+   password_digest: [31m[1;31m"[0m[31m[FILTERED][1;31m"[0m[31m[0m,
+   created_at: [1;34;4mMon[0m, [1;34m16[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m10[0m:[1;34m27[0m:[1;35m52.645866000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   updated_at: [1;34;4mFri[0m, [1;34m27[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m19[0m:[1;34m18[0m:[1;35m13.307181000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   first_name: [31m[1;31m"[0m[31mVijay[1;31m"[0m[31m[0m,
+   last_name: [31m[1;31m"[0m[31mGopal[1;31m"[0m[31m[0m,
+   total_owe: [1;35m100.0[0m,
+   total_owed: [1;35m50.0[0m[32m>[0m,
+ [33m:bill[0m=>
+  [32m#<Bill:0x00007f9a4c3d0070[0m
+   id: [1;34m20[0m,
+   amount: [1;35m100.0[0m,
+   no_parts: [1;34m2[0m,
+   desc: [1;36mnil[0m,
+   created_at: [1;34;4mFri[0m, [1;34m27[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m19[0m:[1;34m18[0m:[1;35m34.448824000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   updated_at: [1;34;4mFri[0m, [1;34m27[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m19[0m:[1;34m18[0m:[1;35m34.448824000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   paid_by_id: [1;34m1[0m[32m>[0m,
+ [33m:amount[0m=>[1;35m50.0[0m,
+ [33m:borrower[0m=>
+  [32m#<User:0x00007f9a3c015f80[0m
+   id: [1;34m4[0m,
+   email: [31m[1;31m"[0m[31makshay@gmail.com[1;31m"[0m[31m[0m,
+   password_digest: [31m[1;31m"[0m[31m[FILTERED][1;31m"[0m[31m[0m,
+   created_at: [1;34;4mMon[0m, [1;34m16[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m10[0m:[1;34m29[0m:[1;34m03[0m.[1;37;41m133135000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   updated_at: [1;34;4mFri[0m, [1;34m27[0m [1;34;4mMay[0m [1;34m2022[0m [1;34m19[0m:[1;34m18[0m:[1;35m38.203946000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+   first_name: [31m[1;31m"[0m[31mAkshay[1;31m"[0m[31m[0m,
+   last_name: [31m[1;31m"[0m[31mVaidhy[1;31m"[0m[31m[0m,
+   total_owe: [1;35m1600.0[0m,
+   total_owed: [1;36mnil[0m[32m>[0m,
+ [33m:borroewer_name[0m=>[31m[1;31m"[0m[31mAkshay[1;31m"[0m[31m[0m,
+ [33m:borrowed_from_name[0m=>[31m[1;31m"[0m[31mVijay[1;31m"[0m[31m[0m}

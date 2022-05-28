@@ -8,7 +8,9 @@ class UserController < ApplicationController
   include BillApplication
   include ExpenseApplication
   include SessionApplication
+
   respond_to :html, :js
+
   def home
     @user = User.new
   end
@@ -60,23 +62,54 @@ class UserController < ApplicationController
 
   def add_expense
     if request.post?
-      if(!params[:unequal].nil? && params[:unequal] == "true")
-        unequal = params[:unequal]
-        participants = params[:participants]
-        bill_amount = params[:bill_amount]
-        no_of_parts = participants.size
-        
-        binding.pry
-        # add_expenses(bill, participants, true)
-      else
-        binding.pry
-        # add_expenses(bill, participants, false)
+      no_of_parts =  params[:participants].size
+      bill_params = {
+        :paid_by => current_user,
+        :amount =>  params[:bill_amount],
+        :no_parts => params[:participants].size+1,
+        :desc => params[:desc]
+      }
+      begin
+        bill = add_bill(bill_params)
+        if(!params[:unequal].nil? && params[:unequal] == "true")
+          share_perc = params[:shares]
+          shares = []
+          share_perc.each do |share|
+            shares.push(share.to_f)
+          end
+          add_expenses(bill, params[:participants], true, shares)
+        else
+          add_expenses(bill, params[:participants], false, [])
+        end
+        redirect_to user_dashboard_path
+      rescue => error
+        @user = current_user
+        @new_expense = Expense.new
+        @all_users = get_all_users_except(@user[:id])
+        @total_expense = ((@user[:total_owed].nil? ? 0:@user[:total_owed]) - (@user[:total_owe].nil? ? 0:@user[:total_owe]))
+        @user_expenses = get_all_expenses_of_user_id(@user[:id])
+        @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
+        flash.now[:danger] = error.message
+        render user_dashboard_path
       end
-      redirect_to user_dashboard_path
     elsif request.get?
       @current_user = current_user
       @all_users = get_all_users_except(@current_user[:id])
       @new_expense = Expense.new
+    end
+  end
+
+
+  def settle_expense
+    if request.get?
+      get_settle_expense_params
+      @expense = get_expense_by_id(params[:expense_id])
+      render :json => {:success => true, :expense => @expense}
+    elsif request.post?
+      binding.pry
+      get_settle_expense_params
+      settle_an_expense_with_id(params[:expense_id], params[:note])
+      redirect_to user_dashboard_path
     end
   end
 
@@ -94,5 +127,11 @@ private
     params.permit(:bill_amount)
     params.permit(:shares)
     params.permit(:participants)
+    params.permit(:desc)
+  end
+
+  def get_settle_expense_params
+    params.permit(:expense_id)
+    params.permit(:note)
   end
 end

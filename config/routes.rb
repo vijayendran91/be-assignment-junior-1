@@ -13,4 +13,7 @@ Rails.application.routes.draw do
 
   get "user/add_expense", :to => "user#add_expense"
   post "user/add_expense", :to => "user#add_expense"
+
+  get "user/settle_expense", :to => "user#settle_expense"
+  post "user/settle_expense", :to => "user#settle_expense"
 end

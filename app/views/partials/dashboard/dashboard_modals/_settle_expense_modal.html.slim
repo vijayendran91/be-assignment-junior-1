@@ -1,18 +1,38 @@
 
 #settleExpenseModal.modal[tabindex="-1" role="dialog"]
-  .modal-dialog[role="document"]
-    .modal-content
-      .modal-header
-        h5.modal-title
-          | Modal title
-        button.modal-close.close[type="button" data-dismiss="modal" aria-label="Close"]
-          span[aria-hidden="true"]
-            | ×
-      .modal-body
-          div#settleExpense
-            
-      .modal-footer
-          button.modal-close.btn.btn-secondary[type="button" data-dismiss="modal"]
-            | Close
-          button.btn.btn-primary[type="button"]
-            | Save changes
+  = form_tag user_settle_expense_path, :method => :post
+    .modal-dialog[role="document"]
+      .modal-content
+        .modal-header
+          h3.modal-title
+            | Settle Expense
+          button.modal-close.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | X
+        .modal-body
+            div#settleExpense
+                table.table#settleExpensesTable
+                  thead
+                    tr
+                      th[scope="row"]
+                        | Amount
+                      th[scope="row"]
+                        | Borrowed From
+                      th[scope="row"]
+                        | Borrower
+                      th[scope="row"]
+                        | Date
+                      th[scope="row"]
+                        | Notes
+                  tbody
+                    tr
+                      td.settleAmount
+                      td.settleBorrowedFrom
+                      td.settleBorrower
+                      td.settleDateOfExpense
+                      td.settleNotes
+                        = text_area_tag :note, "", :class=> "form-control"
+                      td.settleExpenseId
+        .modal-footer
+            button.btn
+              = submit_tag "Settle Expense", data: { disable_with: "Settling Expense..." }, :class => "btn", :id => "settle_expense_submit"

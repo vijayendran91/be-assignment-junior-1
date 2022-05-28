@@ -20,7 +20,7 @@ And("User {string} settles the following expense") do |borrower, table|
   borrower = get_user_by_email(borrower)
   amount = table[1][1]
   expense = get_expenses_between_two_users(borrowed_from, borrower).first
-  settle_an_expense_with_id(expense[:id])
+  settle_an_expense_with_id(expense[:id], "Test Settle")
 end
 
 Then("User {string} has the following expenses") do |string, table|

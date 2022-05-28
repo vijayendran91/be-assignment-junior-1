@@ -75,16 +75,19 @@ Scenario: Users make an unequal expense
     And User "sara@gmail.com" has the following in his dashboard
       | total_owe |  total_owed  |
       | 100.0       | 0.0        |
-    Given User "vijay" pays bill with following details
+    Given User "sara" pays bill with following details
       | amount    | no_parts | paid_by           | description |
-      | 1190.0    | 3        | anantha@gmail.com | Dinner      |
+      | 1190.0    | 3        | sara@gmail.com | Dinner      |
     And A shared expense is made as following
       | email            | share_perc |
       |darshan@gmail.com | 60         |
       |vijay@gmail.com   | 30         |
     And User "vijay@gmail.com" has the following in his dashboard
       | total_owe |  total_owed  |
-      | 357.0       | 400.0        |
+      | 357.0     | 400.0        |
     And User "darshan@gmail.com" has the following in his dashboard
       | total_owe |  total_owed  |
-      | 1014.0    | 0.0        |
+      | 1014.0    | 0.0          |
+    And User "anantha@gmail.com" has the following in his dashboard
+      | total_owe |  total_owed  |
+      | 100.0     | 119.0        |

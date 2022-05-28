@@ -20,14 +20,19 @@ module ExpenseApplication
       participants.each do |user_id|
         borrower = get_user_by_id_service(user_id)
         expense[:borrower] = borrower
+        expense[:borrower_name] = borrower[:first_name]
+        expense[:borrowed_from_name] = bill.paid_by.first_name
         update_user_total_owe(borrower, expense[:amount])
         @expense = add_expense_with_params_service(expense)
+        expenses.push(@expense)
       end
     elsif(unequal == true)
       (0..participants.length-1).each do |i|
         expense[:amount] = get_unequal_share_amount(bill[:amount], share_perc[i])
         borrower = get_user_by_id_service(participants[i])
         expense[:borrower] = borrower
+        expense[:borrower_name] = borrower[:first_name]
+        expense[:borrowed_from_name] = bill.paid_by.first_name
         update_user_total_owe(borrower, expense[:amount])
         @expense = add_expense_with_params_service(expense)
         expenses.push(@expense)
@@ -119,13 +124,13 @@ module ExpenseApplication
     get_expenses_between_two_users_service(borrowed_from_id, borrower_id)
   end
 
-  def settle_an_expense_with_id(expense_id)
+  def settle_an_expense_with_id(expense_id, note)
     expense = get_expense_by_id(expense_id)
     borrower = get_user_by_id(expense.borrower_id)
     borrowed_from = get_user_by_id(expense.borrowed_from_id)
     settle_user_total_owe(borrower, (borrower.total_owe - expense[:amount]))
     settle_user_total_owed(borrowed_from, (borrowed_from.total_owed - expense[:amount]))
-    settle_an_expense_with_id_service(expense_id)
+    settle_an_expense_with_id_service(expense_id, note)
   end
 
 end

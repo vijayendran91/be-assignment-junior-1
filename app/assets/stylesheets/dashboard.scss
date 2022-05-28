@@ -13,7 +13,7 @@ $base-blue: #07b4f9;
   overflow: auto;
 }
 
-td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable
+td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable, tr.settleExpenseClickable
 {
   cursor: pointer;
 }

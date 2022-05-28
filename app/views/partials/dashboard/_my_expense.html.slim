@@ -1,7 +1,6 @@
 div#addSettleExpenses
   = link_to "Add Expense", user_add_expense_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
   = link_to "Settle Expense", "javascript:void(0)", :class=> "btn settleExpenseModal" ,:id => "settleExpenseTrigger"
-
 table.table.my_expense
   thead
     tr
@@ -15,14 +14,16 @@ table.table.my_expense
     tr
       td class=(@total_expense>=0.0 ? "green_row": "red_row")
         -if @total_expense > 0.0
-            = "+ #{@total_expense}"
+            = "+ #{@total_expense.round(2)}"
         -elsif @total_expense <= 0.0
-            = @total_expense.to_f
+            = (@total_expense.to_f).round(2)
       td class=("red_row")
-        = @user[:total_owe].nil? ? 0.0 : @user[:total_owe]
+        = @user[:total_owe].nil? ? 0.0 : @user[:total_owe].round(2)
       td class=("green_row")
-        = @user[:total_owed].nil? ? 0.0: @user[:total_owed]
+        = @user[:total_owed].nil? ? 0.0: @user[:total_owed].round(2)
 
+b
+  |(Please select on an expense to view)
 table.table#allExpensesTable
   thead
     tr
@@ -36,7 +37,7 @@ table.table#allExpensesTable
         | Amount
   tbody
     -(0..@user_expenses.length-1).each do |i|
-      tr data-expense = (@user_expenses[i][:id]) class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row expenseClickable data-expense=1' : 'green_row expenseClickable')
+      tr data-expense-id = (@user_expenses[i][:id]) class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row settleExpenseClickable' : 'green_row settleExpenseClickable')
         th[scope="row"]
           = i+1
         td
