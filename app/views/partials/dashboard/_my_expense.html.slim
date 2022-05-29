@@ -22,8 +22,9 @@ table.table.my_expense
       td class=("green_row")
         = @user[:total_owed].nil? ? 0.0: @user[:total_owed].round(2)
 
-b
-  |(Please select on an expense to view / settle)
+h5
+  b
+    |Please select on borrowed (red rows) expense to settle)
 table.table#allExpensesTable
   thead
     tr
