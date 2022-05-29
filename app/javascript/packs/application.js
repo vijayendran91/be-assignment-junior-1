@@ -17,3 +17,10 @@ require("jgrowl")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+$(document).keydown(function(event) {
+  if (event.keyCode == 27) {
+    $('.modal').hide();
+  }
+});
