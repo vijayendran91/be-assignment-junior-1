@@ -48,9 +48,9 @@ $('document').ready(function(){
 
     $('#add_expense_submit').on('click', function(event){
       $('#errorsList .error').empty();
-      // checkParticipants(event);
-      // checkPercentageValues(event);
-      // checkBillValue(event);
+      checkParticipants(event);
+      checkPercentageValues(event);
+      checkBillValue(event);
     });
 
     function checkParticipants(events){
