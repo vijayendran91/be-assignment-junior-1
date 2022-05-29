@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $('#sharedExpense').hide();
     $('#friendsExpense').hide();
-    $('#errorModal').hide();
 
 
     $('#sharedExpensesTab').on('click', function(){

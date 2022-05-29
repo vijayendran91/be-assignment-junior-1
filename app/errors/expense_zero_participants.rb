@@ -1,0 +1,1 @@
+class ExpenseZeroParticipants < StandardError; end 

@@ -11,6 +11,9 @@
       .modal-body
           div#errorsList
             ul
+              - unless @error.nil?
+                li.error
+                  = @error
               li.error
 
       .modal-footer

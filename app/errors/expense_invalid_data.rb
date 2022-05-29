@@ -1,0 +1,1 @@
+class ExpenseInvalidData < StandardError; end

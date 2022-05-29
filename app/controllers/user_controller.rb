@@ -62,14 +62,15 @@ class UserController < ApplicationController
 
   def add_expense
     if request.post?
-      no_of_parts =  params[:participants].size
-      bill_params = {
-        :paid_by => current_user,
-        :amount =>  params[:bill_amount],
-        :no_parts => params[:participants].size+1,
-        :desc => params[:desc]
-      }
       begin
+        validate_add_expense_params(params)
+        no_of_parts =  params[:participants].size
+        bill_params = {
+          :paid_by => current_user,
+          :amount =>  params[:bill_amount],
+          :no_parts => params[:participants].size+1,
+          :desc => params[:desc]
+        }
         bill = add_bill(bill_params)
         if(!params[:unequal].nil? && params[:unequal] == "true")
           share_perc = params[:shares]
@@ -89,7 +90,7 @@ class UserController < ApplicationController
         @total_expense = ((@user[:total_owed].nil? ? 0:@user[:total_owed]) - (@user[:total_owe].nil? ? 0:@user[:total_owe]))
         @user_expenses = get_all_expenses_of_user_id(@user[:id])
         @user_borrowed = get_all_expenses_as_borrower_service(@user[:id])
-        flash.now[:danger] = error.message
+        @errors = error.message
         render user_dashboard_path
       end
     elsif request.get?
@@ -106,7 +107,6 @@ class UserController < ApplicationController
       @expense = get_expense_by_id(params[:expense_id])
       render :json => {:success => true, :expense => @expense}
     elsif request.post?
-      binding.pry
       get_settle_expense_params
       settle_an_expense_with_id(params[:expense_id], params[:note])
       redirect_to user_dashboard_path

@@ -1,6 +1,10 @@
-= render "/partials/navbar/navbar"
-h1
-  = "Hi #{@user[:first_name]}"
+= render :partial => "/partials/navbar/navbar"
+- if !@errors.nil?
+  .alert.alert-danger
+    = @errors
+- else
+  h2
+    = "Hi #{@user[:first_name]} !"
 .dashboardContainer
   ul.nav.nav-tabs
     li.nav-item#allExpensesTab

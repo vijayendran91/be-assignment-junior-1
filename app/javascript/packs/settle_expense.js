@@ -36,11 +36,5 @@ $('document').ready(function(){
             }).appendTo(".settleExpenseId");
   }
 
-  $(document).keydown(function(event) {
-    if (event.keyCode == 27) {
-      debugger;
-      $('#modal_id').hide();
-    }
-  });
 
 });

@@ -1,5 +1,7 @@
 $('document').ready(function(){
   var add_expense_arr =[];
+  $('#errorModal').hide();
+
 
   $('.participants_checkbox').on('change', function(){
     add_expense_arr = [];
@@ -45,23 +47,77 @@ $('document').ready(function(){
     });
 
     $('#add_expense_submit').on('click', function(event){
+      $('#errorsList .error').empty();
+      // checkParticipants(event);
+      // checkPercentageValues(event);
+      // checkBillValue(event);
+    });
+
+    function checkParticipants(events){
+      var participants = [];
+      $('input.participants_checkbox:checkbox:checked').each(function () {
+        participants.push($(this).val());
+      });
+      if(participants.length <= 0)
+      {
+        setErrorModal(["Pleae select atleast one user"], event)
+      }
+    }
+
+    function checkBillValue(event){
+      var amount = $('#bill_amount').val();
+      var msgs = [];
+      if(isNaN(amount) || amount == ""){
+        msgs.push("Please enter a valid bill amount");
+      }
+      else{
+        if(parseInt(amount) < 0){
+          msgs.push("Entered bill amount is negative \""+amount+"\"");
+        }
+      }
+      if(msgs.length > 0){
+        setErrorModal(msgs, event)
+      }
+    }
+
+    function checkPercentageValues(){
       var percs= $(".add_expense_form_inputs").map(function() {
         return $(this).val();
       }).get();
+
+      var msg = [];
       var total_percs = 0;
       for (let i = 0; i < percs.length; i++) {
-        total_percs += parseInt(percs[i]);
+        var percentage = parseInt(percs[i]);
+        if(percentage < 0){
+          msg.push("Negative percentage value \""+percentage+"\"");
+        }
+        if(isNaN(percs[i])){
+          msg.push("Entered percentage share value is not a valid number \""+ percs[i]+"\"");
+        }
+        else{
+          total_percs += parseInt(percentage);
+        }
       }
       if (total_percs > 100){
-        event.preventDefault();
-        $('#errorModal').show();
-        $('#errorsList .error').empty();
-        $('#errorsList .error').append('Share Percentage More than 100%')
+        msg.push("Sum of percentages is more than 100");
       }
-      debugger;
-    });
+
+      if(msg.length > 0){
+        setErrorModal(msg, event)
+      }
+    }
+
+    function setErrorModal(msgs, event){
+      event.preventDefault();
+      $('#errorModal').show();
+      for (let i = 0; i < msgs.length; i++){
+        $('#errorsList .error:last').append("<li>"+msgs[i]+"</li>");
+      }
+    }
 
     $('.modal-close').on('click', function(){
       $('#errorModal').hide();
     });
+
 });
