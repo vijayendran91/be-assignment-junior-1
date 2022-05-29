@@ -11,7 +11,7 @@ module ExpenseHelper
   def validate_add_expense_params(params)
     if( params[:participants].nil? || params[:participants].size <=0 )
       raise ExpenseZeroParticipants.new("Please select atleast one user to create an expense")
-    elsif(params[:amount].nil? || params[:amount] <= 0)
+    elsif(params[:bill_amount].nil? || params[:bill_amount].to_f <= 0)
       raise ExpenseInvalidData.new("Please enter a valid amount to create an expense")
     end
   end
