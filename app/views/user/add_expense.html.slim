@@ -29,7 +29,9 @@ h1
         = text_field_tag "bill_amount", " ",:class => "form-control add_expense_bill_input "
       #unequalSplit
 
-
+      .form_group
+        = label_tag "desc", "Bill Description", :style=>"margin-top:2%;"
+        = text_area_tag :desc, "", :class=> "form-control add_expense_desc"
       .form_group
         = submit_tag "Add Expense", data: { disable_with: "Adding Expense..." }, :class => "btn", :id => "add_expense_submit"
 

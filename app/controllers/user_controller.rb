@@ -45,6 +45,12 @@ class UserController < ApplicationController
       rescue InvalidCredentialsError => e
         flash.now[:notice] = e.message
         render user_sign_up_path
+      rescue InvalidEmailError => e
+        flash.now[:notice] = e.message
+        render user_sign_up_path
+      rescue UserSignUpError => e
+        flash.now[:notice] = e.message
+        render user_sign_up_path
       end
     elsif request.get?
       @user = User.new
@@ -111,6 +117,11 @@ class UserController < ApplicationController
       settle_an_expense_with_id(params[:expense_id], params[:note])
       redirect_to user_dashboard_path
     end
+  end
+
+  def expenses_log
+    @user = current_user
+    @expenses_log = get_all_expenses_log(@user.id)
   end
 
 private

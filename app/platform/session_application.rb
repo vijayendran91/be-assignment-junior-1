@@ -16,6 +16,7 @@ module SessionApplication
   end
 
   def create_new_user(params)
+    validate_sign_up_params(params)
     validate_email(params[:email])
     @user = create_new_user_service(params)
     unless @user.errors.empty?

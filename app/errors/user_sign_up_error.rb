@@ -1,0 +1,1 @@
+class UserSignUpError < StandardError; end

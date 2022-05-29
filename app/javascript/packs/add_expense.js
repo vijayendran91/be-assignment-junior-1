@@ -119,7 +119,4 @@ $('document').ready(function(){
     $('.modal-close').on('click', function(){
       $('#errorModal').hide();
     });
-
-    
-
 });

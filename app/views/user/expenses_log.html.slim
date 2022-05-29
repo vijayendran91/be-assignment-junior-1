@@ -1,0 +1,36 @@
+= render :partial => "/partials/navbar/navbar"
+.dashboardContainer
+  table.table#allExpensesLogTable
+    thead
+      tr
+        th[scope="col"]
+          | #
+        th[scope="col"]
+          | Borrowed From
+        th[scope="col"]
+          | Borrower
+        th[scope="col"]
+          | Amount
+        th[scope="col"]
+          | Date
+        th[scope="col"]
+          | Bill description
+        th[scope="col"]
+          | Expense Settling Note
+    tbody
+      -(0..@expenses_log.length-1).each do |i|
+        tr data-expense-id = (@expenses_log[i][:id]) class=((@expenses_log[i][:settled] == true)? "blue_row" : is_borrower?(@expenses_log[i], @user[:id]) ? 'red_row' : 'green_row')
+          th[scope="row"]
+            = i+1
+          td
+            = @expenses_log[i][:borrowed_from_name]
+          td
+            = @expenses_log[i][:borrower_name]
+          td
+            = @expenses_log[i][:amount]
+          td
+            = @expenses_log[i][:created_at].strftime("%a %d-%m-%y  %l:%M:%p")
+          td
+            = @expenses_log[i][:bill_desc]
+          td[scope="col"]
+            = @expenses_log[i][:notes].nil? ? "NA" : @expenses_log[i][:notes]

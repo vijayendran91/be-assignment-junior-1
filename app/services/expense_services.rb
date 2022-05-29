@@ -9,6 +9,7 @@ module ExpenseServices
       :borrowed_from_name => params[:borrowed_from_name],
       :amount => params[:amount],
       :settled => false,
+      :bill_desc => params[:bill_desc],
       :notes => params[:notes]
     }
     expense = Expense.new(expense_params)
@@ -45,6 +46,11 @@ module ExpenseServices
   def settle_an_expense_with_id_service(expense_id, note)
     expense = Expense.find_by(:id => expense_id)
     expense.update(:settled => true)
+    expense.update(:notes => note)
     expense
+  end
+
+  def get_all_expenses_log_service(user_id)
+    Expense.where(:borrowed_from => user_id).or(Expense.where(:borrower => user_id))
   end
 end

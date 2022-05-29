@@ -1,5 +1,6 @@
 div#addSettleExpenses
   = link_to "Add an Expense", user_add_expense_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
+  = link_to "All Expenses Log", user_all_expenses_log_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
 table.table.my_expense
   thead
     tr
@@ -34,9 +35,13 @@ table.table#allExpensesTable
         | Borrower
       th[scope="col"]
         | Amount
+      th[scope="col"]
+        | Date
+      th[scope="col"]
+        | Bill description
   tbody
     -(0..@user_expenses.length-1).each do |i|
-      tr data-expense-id = (@user_expenses[i][:id]) class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row settleExpenseClickable' : 'green_row settleExpenseClickable')
+      tr data-expense-id = (@user_expenses[i][:id]) class=(is_borrower?(@user_expenses[i], @user[:id]) ? 'red_row settleExpenseClickable' : 'green_row')
         th[scope="row"]
           = i+1
         td
@@ -45,3 +50,7 @@ table.table#allExpensesTable
           = @user_expenses[i][:borrower_name]
         td
           = @user_expenses[i][:amount]
+        td
+          = @user_expenses[i][:created_at].strftime("%a %d-%m-%y  %l:%M:%p")
+        td
+          = @user_expenses[i][:bill_desc]

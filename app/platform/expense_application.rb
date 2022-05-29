@@ -11,7 +11,8 @@ module ExpenseApplication
     no_of_parts = bill[:no_parts]
     expense = {
       :borrowed_from => bill.paid_by,
-      :bill => bill
+      :bill => bill,
+      :bill_desc => bill.desc
     }
     expenses = []
     if(unequal == false)
@@ -62,10 +63,10 @@ module ExpenseApplication
       total_perc += perc
     end
     payer_perc = 100 - total_perc
-    amount = get_unequal_share_amount(bill_amount, payer_perc)
+    amount = get_unequal_share_amount(bill_amount, total_perc)
     addition = user.total_owed unless(user.total_owed == nil)
     addition+=amount
-    update_user_total_owed_service(user, amount)
+    update_user_total_owed_service(user, addition)
   end
 
   def update_user_total_owe(user, amount)
@@ -131,6 +132,10 @@ module ExpenseApplication
     settle_user_total_owe(borrower, (borrower.total_owe - expense[:amount]))
     settle_user_total_owed(borrowed_from, (borrowed_from.total_owed - expense[:amount]))
     settle_an_expense_with_id_service(expense_id, note)
+  end
+
+  def get_all_expenses_log(user_id)
+    get_all_expenses_log_service(user_id)
   end
 
 end
