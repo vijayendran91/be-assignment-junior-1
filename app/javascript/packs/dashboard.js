@@ -1,6 +1,8 @@
 $(document).ready(function(){
     $('#sharedExpense').hide();
     $('#friendsExpense').hide();
+    $('#errorModal').hide();
+
 
     $('#sharedExpensesTab').on('click', function(){
       $('#myExpense').hide();
@@ -31,9 +33,10 @@ $(document).ready(function(){
     $('.modal-close').on('click', function(){
       $('#addExpenseModal').hide();
       $('#settleExpenseModal').hide();
+
     });
 
-    
+
 
     $('.sharedClickableRow').on('click', function(){
       var user_id = $(this).data("user_id")

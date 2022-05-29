@@ -7,6 +7,8 @@ h1.sign_up_head
 =form_for User.new, :url => user_sign_up_path, :method => 'post' do |f|
   .form-row.mt-4
     .form-group.col-md-6
+      = f.text_field :first_name, :class=> "first_name", :class=>"form-control text_box", :placeholder=>"First Name"
+      = f.text_field :last_name, :class=> "last_name", :class=>"form-control text_box", :placeholder=>"Last Name"
       = f.email_field :email, :class=> "email", :class=>"form-control text_box", :placeholder=>"Email"
       = f.password_field :password, :class=>"password" ,:class=>"form-control text_box", :placeholder=>"Password"
       = f.submit "Sign Up",:class=>"btn mt-2 form-submit blue_btn"

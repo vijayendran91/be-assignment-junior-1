@@ -115,7 +115,7 @@ class UserController < ApplicationController
 
 private
   def get_user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
   def get_user_params_expense

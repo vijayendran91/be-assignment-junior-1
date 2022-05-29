@@ -1,4 +1,5 @@
 = render "/partials/navbar/navbar"
+= render "/partials/dashboard/dashboard_modals/error_modal"
 h1
   = "Hi #{@current_user[:first_name]}"
 
@@ -25,7 +26,7 @@ h1
         = label_tag "unequal", "Unequal Split ?", :class => "unequal_label"
       .form_group
         = label_tag "bill_amount", "Bill Amount"
-        = text_field_tag "bill_amount", " ",:class => "form-control add_expense_form_inputs"
+        = text_field_tag "bill_amount", " ",:class => "form-control add_expense_bill_input "
       #unequalSplit
 
 

@@ -42,10 +42,14 @@ td.sharedClickableRow, td.friendsClickableRow, tr.expenseClickable, tr.settleExp
   margin-left: 20%
 }
 
-.add_expense_form_inputs{
+.add_expense_form_inputs , .add_expense_bill_input{
   // margin-left: 2%;
   width: 20% !important;
 }
 .unequal_share_label{
   margin-top: 2%;
+}
+
+#errorsList{
+  color: red;
 }

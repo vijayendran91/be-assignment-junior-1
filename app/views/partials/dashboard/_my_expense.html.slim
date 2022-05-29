@@ -1,6 +1,5 @@
 div#addSettleExpenses
-  = link_to "Add Expense", user_add_expense_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
-  = link_to "Settle Expense", "javascript:void(0)", :class=> "btn settleExpenseModal" ,:id => "settleExpenseTrigger"
+  = link_to "Add an Expense", user_add_expense_path, :class=> "btn addExpenseModal" ,:id => "addExpenseTrigger"
 table.table.my_expense
   thead
     tr
@@ -23,7 +22,7 @@ table.table.my_expense
         = @user[:total_owed].nil? ? 0.0: @user[:total_owed].round(2)
 
 b
-  |(Please select on an expense to view)
+  |(Please select on an expense to view / settle)
 table.table#allExpensesTable
   thead
     tr
